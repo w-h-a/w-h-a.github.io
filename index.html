@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Start Favicon  TODO Edit Favicon --> 
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/apple-touch-icon.15b494ce.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAABQJJREFUWEftV1lIVW0UXTcFp8ocKsu0RM0pyJQezIowJUpxVlLLVAyu2iCkTZBwm8swEzUsxZdLKpJgWYpaURaKb5kPmdCgDZZEM0Zp92dtOJd7PP699uJ+O+fbZ9/9rb3W+r6rA2DCPwzdbAOzCPxzBAwGg2lqagrHjx+fUQubN2/G9u3bMTIyghMnTsyYExMTg7i4OJSUlODdu3eqnHPnzuHjx484f/78jN/qjEajKSkpCY6Ojvj165cm6dKlS9i3bx++fPkCJycnmExa1TY3N2Pr1q1YsGABJicnzTV8fX3x7Nkz/Pz5E4sXL8bXr1819XV6vd50+fJlhIWFoa+vT5Nw584dREREyPvly5cLEtPj9evXGBoaAtGyjIMHD+LUqVOwtrZGeno6GhoatA2sWrXK9OTJExw4cABlZWWahLGxMUHGw8MD27ZtQ3t7uyrH09MTr169kvFwBJbBDX348AErV67E4OAgkpOTtQ3MmTPHND4+jrt37yIlJUWVsHDhQilQXl6OwsJCFBcX48KFC6qc1NRUNDU1YcuWLejs7DSvLVu2TNDavXs3vL29sX//fixatAg/fvxQfS9OePPmTYSEhMDd3V21uGnTJty7dw+xsbGor69HW1sbsrKyVDkXL17E3r174ezsrJrxnj17QP4sWbJERtff3y8IXL9+XdvAoUOHcPbsWXh5eeHly5fmhIKCAlRWVsLHx0casLOzw9q1azUw29jYYM2aNar35A7fr1+/HjqdTsb06NEjpKWlaRsIDw/Hw4cPNUQhOTMzMzFv3jxUVVVh586dmD9/Pv78+SNFbG1tRR1XrlwRFJRwdXUVOR49ehSlpaXymmhkZ2fLGKgKJWQE7PTz58+ora1VFXrw4AEcHBwQGhoq7ysqKmSez58/l++VxrmrxsZGc9GcnBzU1dXB399f1MFQxkm/uHHjhroBPln+mLJKA7l9+7bsnBLr7u4Ww1EKFBUVyQ6phNHRUXNRcopjCwgIML+zsrISVKiiXbt2aRs4ffq0sJxm8/37dyHP27dvBcYzZ85onlmBhCI6K1asMBfkuKgqKufw4cOqeRPhxMREMaXfv3/Lmvk+QI3funVLdkpJRkVFiazi4+PR2toqyUSEO9ixY4c8s0GqJCMjw/xDtG0aDtGyJDQT/Pz8sGHDBnHNjo4OdQO0Uf4AzYTuRd1TYjSR4eFhSe7p6RFCBgcHy65fvHiB/Px8kKxK0BMSEhKk1kxBb6Gi6A8qBPjw+PFj0Fajo6Nx9epV2encuXPBw4pRU1MjquA7GtC1a9ewevVqDAwMyDpVQePiaMj4mYIIcmxLly6Vc0N1JaPUCCFlRM3a29vLbpWgm3G2ZDc9guR0cXExy5KGxXFNZ7plI7m5ubI5ZdSqBign7iooKAi9vb3CCR4iSii84Ol55MgRIRu5owShpdsRZkutWzageASb4PhUDfDAoX/zbkAuHDt2DCdPnjR/T9jevHkjrsnDy2AwCF8YPPHev38/45kyfRQkaGBgIHheaG7FZC41y0XutKWlRfX9p0+fRKZcp7ncv39f1iMjI9HV1SWKIIp/i7y8PFRXV2Pjxo3aBoxGo1lWNJKnT5+qapEb69atkyOaypmYmJB18ofzpdXSnv8Wbm5uQnaeMxoEqFHOnTcfWqrlDYdF9Xq9WDCdjyalBB3x27dv/3u1m94QR0ekZ/+YzCIwi8B/Q0NeJHm/PkMAAAAASUVORK5CYII="
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAfJJREFUOE/Fk8+LsVEUx7+eYmJlY6VmYc1CkqKYhSEzycLCQuTHgoUUTdlSmpRslJSZ/KjHs5KQYkcRxWJmg80sjK2NP2B43u7RzLt/38Wcze3ec8/nfu/53isBIOI/QvL7AEEQRL/fD1G83uTl5QXT6RTtdpvmVqsVOp0OlUoFcrkcw+EQDocD5/OZ8hKe58Xn52dst1ta+Pz8xHg8RiwWo3k2m8X7+zt6vR48Hg/K5TJCoRAmk8kVEI/Hxa+vL7y+vkKlUqHVakGhUODu7o42MFggEMDxeKRcp9OB0+lEIpG4ArRarZhOpxGJRKiIyWOj2WwGx3FYLpcwmUyQSqUYjUaw2+2YzWaw2Wy4XC6QcBwnzudzKmDU0+lEUlOpFJRKJY3RaBT39/e0J5fLoVgsot/vg9WRjYPBAOFwGPl8nprIAIvFAre3t2DXazQaqFar2O/31Cu9Xk9wppwAmUwGm80GT09PeHh4gNvthlqthlarRaFQwMfHB9brNQRB+HlyzDmDwXAFWCwWPD4+kkyj0Ui2MekajYb6wfI+nw/JZPIHwJpeq9WugJubG6xWKxwOBzpdJpORdbvdDl6vF6VSifz/to5RXC4XwX+eMs/zeHt7o80sWEG320W9XifpwWCQ+vEd7JBms/kX8K//6fc/0x9JN9czYcG7HAAAAABJRU5ErkJggg=="
+    />
+    <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiIiwic2hvcnRfbmFtZSI6IiIsImljb25zIjpbeyJzcmMiOiIvYW5kcm9pZC1jaHJvbWUtMTkyeDE5Mi5wbmciLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiIvYW5kcm9pZC1jaHJvbWUtNTEyeDUxMi5wbmciLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn1dLCJ0aGVtZV9jb2xvciI6IiNmZmZmZmYiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiI2ZmZmZmZiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIn0=" />
+    <!-- End Favicon  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wes Anderson</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  <script type="module" crossorigin src="/assets/index.fdbf9929.js"></script>
+  <link rel="stylesheet" href="/assets/index.6e257d70.css">
+</head>
+  <body>
+    <!-- Contact Buttons -->
+    <div class="flex flex-col fixed z-50 w-12 text-2xl space-y-2 top-3 right-3">
+      <a
+        href="#"
+        id="menu"
+        class="
+          flex
+          h-12
+          items-center
+          shadow-md
+          justify-center
+          font-medium
+          rounded-md
+          text-white
+          bg-midnightblue
+          hover:bg-gray-600
+        "
+      >
+        <i class="fas fa-bars"></i>
+      </a>
+      <a
+        href="mailto:wes@wesanderson.net"
+        class="
+          menuItem
+          flex
+          h-12
+          items-center
+          shadow-md
+          justify-center
+          border border-transparent
+          font-medium
+          rounded-full
+          text-white
+          bg-midnightblue
+          hover:bg-gray-600
+        "
+        target="_blank"
+      >
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a
+        href="https://www.linkedin.com/in/wes-anderson-479087101/"
+        class="
+          menuItem
+          flex
+          h-12
+          items-center
+          shadow-md
+          justify-center
+          border border-transparent
+          font-medium
+          rounded-full
+          text-white
+          bg-midnightblue
+          hover:bg-gray-600
+        "
+        target="_blaank"
+      >
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a
+        href="https://github.com/w-h-a"
+        class="
+          menuItem
+          flex
+          h-12
+          items-center
+          shadow-md
+          justify-center
+          border border-transparent
+          font-medium
+          rounded-full
+          text-white
+          bg-midnightblue
+          hover:bg-gray-600
+        "
+        target="_blank"
+      >
+        <i class="fab fa-github"></i>
+      </a>
+      <a
+        href="assets/Wesley_Anderson_Resume.pdf"
+        target="_blank"
+        class="
+          menuItem
+          flex
+          h-12
+          items-center
+          shadow-md
+          justify-center
+          border border-transparent
+          font-medium
+          rounded-full
+          text-white
+          bg-midnightblue
+          hover:bg-gray-600
+        "
+      >
+        <i class="fas fa-file-alt"></i>
+      </a>
+    </div>
+
+    <!-- Header -->
+    <div class="relative py-16 bg-white">
+      <div
+        class="hidden absolute top-0 inset-x-0 h-1/2 bg-white lg:block"
+        aria-hidden="true"
+      ></div>
+      <div class="max-w-7xl mx-auto bg-gray-200 lg:bg-transparent lg:px-8">
+        <div class="lg:grid lg:grid-cols-12">
+          <div
+            class="
+              relative
+              z-10
+              lg:col-start-1
+              lg:row-start-1
+              lg:col-span-4
+              lg:py-16
+              lg:bg-transparent
+            "
+          >
+            <div
+              class="absolute inset-x-0 h-1/2 bg-white lg:hidden"
+              aria-hidden="true"
+            ></div>
+            <div class="max-w-sm mx-auto px-4 sm:px-6 lg:p-0">
+              <div class="aspect-w-1 aspect-h-1">
+                <img
+                  class="object-cover object-center rounded-3xl shadow-2xl"
+                  src="/assets/headshot.214a97b2.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="
+              relative
+              bg-gray-200
+              lg:col-start-3
+              lg:row-start-1
+              lg:col-span-10
+              lg:rounded-3xl
+              lg:grid lg:grid-cols-10
+              lg:items-center
+            "
+          >
+            <div
+              class="
+                relative
+                max-w-md
+                mx-auto
+                py-12
+                px-4
+                sm:max-w-3xl
+                sm:py-16
+                sm:px-6
+                lg:max-w-none
+                lg:p-0
+                lg:col-start-4 lg:col-span-6
+              "
+            >
+              <h2
+                class="text-3xl font-extrabold text-gray-900"
+                id="join-heading"
+              >
+              &#x1f44b; Hi! I'm Wes! 
+              </h2>
+              <h4 class="text-xl text-gray-500 mt-1">
+                Springfield, MA
+              </h4>
+              <p class="text-lg text-gray-900 mt-6">
+                I am a software engineer with multiple years of experience with JavaScript, TypeScript, Go, and various technologies. 
+              </p>
+              <p class="text-lg text-gray-900 mt-6">
+                I am a co-creator of
+                <a
+                  class="text-grouparooblue hover:text-airbytepurple"
+                  href="https://chimera-deploy.dev/"
+                  target="_blank"
+                  >Chimera</a
+                >, which automates canary deployments for containerized microservices that communicate synchronously on AWS.
+              </p>
+              <a
+                class="
+                  mt-6
+                  block
+                  w-full
+                  py-3
+                  px-5
+                  text-center
+                  bg-midnightblue
+                  border border-transparent
+                  rounded-md
+                  shadow-md
+                  text-base
+                  font-medium
+                  text-white
+                  hover:opacity-70
+                  sm:inline-block
+                  sm:w-auto
+                "
+                href="assets/Wesley_Anderson_Resume.pdf"
+                target="_blank"
+                ><span class="text-xl mr-3"
+                  ><i class="fas fa-file-alt"></i></span
+                >Resume</a
+              >
+              <a
+                class="
+                  mt-6
+                  sm:mx-2
+                  block
+                  w-full
+                  py-3
+                  px-5
+                  text-center
+                  bg-grouparooblue
+                  border border-transparent
+                  rounded-md
+                  shadow-md
+                  text-base
+                  font-medium
+                  text-white
+                  hover:bg-airbytepurple
+                  sm:inline-block
+                  sm:w-auto
+                "
+                href="https://chimera-deploy.dev"
+                target="_blank"
+                >Read Chimera Case Study</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chimera -->
+    <div class="relative py-16">
+      <div
+        class="hidden absolute top-0 inset-x-0 h-1/2 lg:block"
+        aria-hidden="true"
+      ></div>
+      <div class="bg-gradient-to-r from-airbytepurple to-grouparooblue">
+        <div
+          class="
+            max-w-7xl
+            mx-auto
+            lg:to-transparent
+            lg:from-transparent
+            lg:bg-transparent
+            lg:px-8
+          "
+        >
+          <div class="lg:grid lg:grid-cols-12">
+            <div
+              class="
+                relative
+                z-10
+                lg:col-start-1
+                lg:row-start-1
+                lg:col-span-4
+                lg:py-16
+                lg:bg-transparent
+              "
+            >
+              <div
+                class="absolute inset-x-0 h-1/2 bg-white lg:hidden"
+                aria-hidden="true"
+              ></div>
+              <div class="max-w-sm mx-auto px-4 sm:px-6 lg:p-0">
+                <div class="aspect-w-1 aspect-h-1">
+                  <img
+                    class="object-cover object-center bg-white rounded-3xl shadow-2xl"
+                    src="/assets/Chimera_graphic_color.974179d5.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+              
+            </div>
+
+            <div
+              class="
+                relative
+                lg:col-start-3
+                lg:row-start-1
+                lg:col-span-10
+                lg:rounded-3xl
+                lg:grid lg:grid-cols-10
+                lg:items-center
+                lg:py-12
+              "
+            >
+              <div
+                class="
+                  relative
+                  max-w-md
+                  mx-auto
+                  py-12
+                  px-4
+                  sm:max-w-3xl
+                  sm:py-16
+                  sm:px-6
+                  lg:max-w-none
+                  lg:p-0
+                  lg:col-start-4 lg:col-span-6
+                "
+              >
+              <p class="text-2xl text-white mt-6">
+                Chimera reduces the risk of introducing bugs that propagate through your microservice infrastructure by gradually shifting traffic to a canary version of your service while automating simple threshold canary analysis.
+              </p>
+              <p class="text-2xl text-white mt-6"> 
+                Chimera supports canary deployments for microservices that run on ECS/Fargate and communicate via App Mesh. For monitoring metrics, Chimera uses a Prometheus-configured CloudWatch agent that Chimera sets up before it performs canary deployments.
+              </p>
+              <br>
+                <div class="wrap mx-auto">
+                  <div class="grid grid-rows-10 grid-cols-6">
+                    <div class="row-start-2 col-start-1 col-span-5 self-end ">
+                      <img class="rounded-lg" src="/assets/chimera_diagram.b2a8ef68.png" alt="">
+                    </div>
+                  </div>
+                  <a
+                class="
+                  mt-6
+                  sm:mx-2
+                  block
+                  w-full
+                  py-3
+                  px-5
+                  text-center
+                  bg-white
+                  border border-transparent
+                  rounded-md
+                  shadow-md
+                  text-base
+                  font-medium
+                  text-grouparooblue
+                  hover:bg-white
+                  hover:text-airbytepurple
+                  sm:inline-block
+                  sm:w-auto
+                "
+                href="https://chimera-deploy.dev"
+                target="_blank"
+                >Read Chimera Case Study</a
+              >
+              <a
+                class="
+                  mt-6
+                  sm:mx-2
+                  block
+                  w-full
+                  py-3
+                  px-5
+                  text-center
+                  bg-white
+                  border border-transparent
+                  rounded-md
+                  shadow-md
+                  text-base
+                  font-medium
+                  text-grouparooblue
+                  hover:bg-white
+                  hover:text-airbytepurple
+                  sm:inline-block
+                  sm:w-auto
+                "
+                href="https://www.youtube.com/watch?v=ENxgQ3seRB0"
+                target="_blank"
+                >Watch the Presentation</a
+              > 
+                </div>
+                
+                
+              <!-- <div>
+                <img class="rounded-lg shadow-lg" src="images/fullarchitecture_white.png" alt="">
+              </div> -->
+            </div>
+          </div>
+        
+          </div>
+        
+        
+  
+      </div>
+    </div>
+  </div>
+
+    <!-- Other Projects -->
+    <div class="relative pt-16 pb-20 px-4 sm:px-6 lg:pt-16 lg:pb-28 lg:px-8">
+      <div class="absolute inset-0">
+        <div class="bg-white h-1/3 sm:h-2/3"></div>
+      </div>
+      <div class="relative max-w-7xl mx-auto">
+        <div class="text-center">
+          <h2
+            class="
+              text-3xl
+              tracking-tight
+              font-extrabold
+              text-gray-900
+              sm:text-4xl
+            "
+          >
+            Other Projects
+          </h2>
+        </div>
+        <div
+          class="
+            mt-12
+            max-w-lg
+            mx-auto
+            grid
+            gap-10
+            xl:grid-cols-3
+            lg:grid-cols-3
+            md:grid-cols-2
+            md:max-w-none
+          "
+        >
+        
+          <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
+            <div class="flex-shrink-0 p-6 flex justify-center bg-gray-200">
+
+            </div>
+            <div class="flex-1 bg-white p-6 flex flex-col justify-between">
+              <div class="flex-1">
+                <p class="text-xl font-semibold text-gray-900 mt-2">Rello</p>
+                <p class="mt-3 text-base text-gray-500">
+                  Trello-like task management app.
+                </p>
+                <p class="mt-3 text-base text-airbytepurple">
+                  Node.js/Express, MongoDB, React/Redux
+                </p>
+              </div>
+            </div>
+          </div>
+
+          
+
+          <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
+            <div class="flex-shrink-0 p-6 flex justify-center bg-gray-200">
+              
+            </div>
+            <div class="flex-1 bg-white p-6 flex flex-col justify-between">
+              <div class="flex-1">
+                <p class="text-xl font-semibold text-gray-900 mt-2">
+                  ToDo List 
+                </p>
+                <p class="mt-3 text-base text-gray-500">
+                  An interactive todo list manager. 
+                </p>
+                <p class="mt-3 text-base text-airbytepurple">
+                  JavaScript, Node.js/Express
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
+            <div class="flex-shrink-0 p-6 flex justify-center bg-gray-200">
+              
+            </div>
+            <div class="flex-1 bg-white p-6 flex flex-col justify-between">
+              <div class="flex-1">
+                <p class="text-xl font-semibold text-gray-900 mt-2">
+                  Requestotron
+                </p>
+                <p class="mt-3 text-base text-gray-500">
+                  RequestBin-like tool for receiving and debugging webhooks.
+                </p>
+                <p class="mt-3 text-base text-airbytepurple">
+                  Node.js/Express, PostgreSQL, Webhooks
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+ 
+
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="bg-grouparooblue">
+      <div class="mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+          <span class="block">Let's Connect!</span>
+        </h2>
+        <p class="mt-4 mb-4 text-lg leading-6 text-gray-200">
+          I am looking for my next opportunity! Please get in touch if you think
+          I'd be a good fit for your team.
+        </p>
+        <div class="flex items-center justify-center flex-wrap">
+          <a
+            href="mailto:wes@wesanderson.net"
+            class="
+              w-2/5
+              mt-4
+              mx-2
+              inline-flex
+              items-center
+              shadow-md
+              justify-center
+              px-5
+              py-2
+              border border-transparent
+              font-medium
+              rounded-md
+              text-midnightblue
+              bg-white
+              hover:bg-gray-300
+              sm:w-auto
+            "
+            target="_blank"
+          >
+            <span class="text-xl mr-3"><i class="fas fa-envelope"></i></span
+            >Email
+          </a>
+          <a
+            href="https://www.linkedin.com/in/wes-anderson-479087101/"
+            class="
+              w-2/5
+              mt-4
+              mx-2
+              inline-flex
+              items-center
+              shadow-md
+              justify-center
+              px-5
+              py-2
+              border border-transparent
+              font-medium
+              rounded-md
+              text-midnightblue
+              bg-white
+              hover:bg-gray-300
+              sm:w-auto
+            "
+            target="_blank"
+          >
+            <span class="text-xl mr-3"><i class="fab fa-linkedin"></i></span
+            >LinkedIn
+          </a>
+          <a
+            href="https://github.com/w-h-a"
+            class="
+              w-2/5
+              mt-4
+              mx-2
+              inline-flex
+              items-center
+              shadow-md
+              justify-center
+              px-5
+              py-2
+              border border-transparent
+              font-medium
+              rounded-md
+              text-midnightblue
+              bg-white
+              hover:bg-gray-300
+              sm:w-auto
+            "
+            target="_blank"
+          >
+            <span class="text-xl mr-3"><i class="fab fa-github"></i></span
+            >GitHub
+          </a>
+          <a
+            href="assets/Wesley_Anderson_Resume.pdf"
+            target="_blank"
+            class="
+              w-2/5
+              mt-4
+              mx-2
+              inline-flex
+              items-center
+              shadow-md
+              justify-center
+              px-5
+              py-2
+              border border-transparent
+              font-medium
+              rounded-md
+              text-midnightblue
+              bg-white
+              hover:bg-gray-300
+              sm:w-auto
+            "
+          >
+            <span class="text-xl mr-3"><i class="fas fa-file-alt"></i></span
+            >Resume
+          </a>
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
